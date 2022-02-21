@@ -103,23 +103,16 @@ jobs:
       id: release
       uses: ncipollo/release-action@v1
       with:
-        name: ${{ env.DATE }} 🚀 N1-Openwrt-img | 编译
+        name: R${{ env.DATE }} for ${{ env.PRODUCT_NAME }}
         allowUpdates: true
-        tag: ${{ env.version }}
+        tag: ${{ env.FILE_NAME }}
         commit: main
-        token: ${{ secrets.TOKEN }}
+        token: ${{ secrets.RELEASES_TOKEN }}
         body: |
-          ## 以下为N1的最新固件（每日上午7:30左右自动编译打包最新固件）
-          默认IP：192.168.1.254 默认密码： password
-          无线名称：Phicomm_n1 无线密码：password
-          Openwrt (注:此版本为王晓峰个人的精简版。+o版内核更稳定)
-          [博客查看更多内容](https://wxf2088.xyz)
-          [推荐vps服务器①-CN2GIA](https://wxf2088.xyz/2499.html)
-          [推荐vps服务器②-CMI](https://wxf2088.xyz/2905.html)
-          [推荐vps服务器③-美西](https://wxf2088.xyz/1923.html)
-          [高配便宜vps-普通线路](https://wxf2088.xyz/1521.html)
-          [精品线路机场](https://wxf2088.xyz/3021.html)
-        artifacts: "/opt/kernel/tmp/*"   
+          默认IP：192.168.1.254 默认密码：password
+          当前使用版本:【编译前的最后一次[➦主源码](https://github.com/coolsnowwolf/lede)更新记录】
+          ${{ env.useVersionInfo }}
+        artifacts: ${{ env.FIRMWARE }}/*
 
     - name: Upload firmware to WeTransfer
       if: steps.gz.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
