@@ -74,6 +74,6 @@ jobs:
         sudo chmod  -R 777 /opt
         cd /opt/kernel
         sudo chmod +x *.sh
-        sudo ./mk_s905d_n1.sh && sudo chown $USER:$USER -R tmp/
+        sudo ./mk_s905d_n1.sh && sudo chown $USER:$USER -R files/
         
     
