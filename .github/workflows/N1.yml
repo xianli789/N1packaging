@@ -99,6 +99,8 @@ jobs:
     - name: Create release
       id: release
       uses: ncipollo/release-action@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         name: ${{ env.DATE }} 🚀 N1-Openwrt-img | 编译
         allowUpdates: true
